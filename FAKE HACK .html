@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperação de Conta Roblox</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            width: 300px;
+            color: white;
+        }
+        .container img {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+        input, button {
+            margin-top: 10px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+        }
+        input {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+        button {
+            background-color: #e74c3c;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #c0392b;
+        }
+        .notification {
+            background-color: #ddd;
+            padding: 10px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+        .notification a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6e/Roblox_Logo.png" alt="Roblox Logo">
+        <h1 style="font-size: 1.5em;">Recuperação de Conta Roblox</h1>
+        <input type="email" id="email" placeholder="Digite seu email Gmail" pattern="[a-z0-9._%+-]+@gmail.com" required>
+        <button onclick="sendFakeEmail()">Recuperar Conta</button>
+        <p id="message"></p>
+        <div class="notification" id="notification" style="display: none;">
+            Um email foi enviado para <span id="emailPlaceholder"></span> com um link para recuperação da conta.<br>
+            <a href="https://www.roblox.com/passwordreset" target="_blank">Clique aqui para redefinir sua senha</a>
+        </div>
+    </div>
+
+    <script>
+        function sendFakeEmail() {
+            const email = document.getElementById('email').value;
+            const message = document.getElementById('message');
+            const notification = document.getElementById('notification');
+            const emailPlaceholder = document.getElementById('emailPlaceholder');
+
+            if(email && email.endsWith('@gmail.com')) {
+                emailPlaceholder.textContent = email;
+                message.textContent = `Enviando email para ${email}...`;
+
+                // Simulação de envio de email (timeout de 2 segundos)
+                setTimeout(() => {
+                    message.textContent = '';
+                    notification.style.display = 'block';
+                }, 2000);
+            } else {
+                if (!email) {
+                    message.textContent = 'Por favor, preencha o campo de email.';
+                } else {
+                    message.textContent = 'Por favor, digite um email do Gmail válido.';
+                }
+            }
+        }
+    </script>
+</body>
+</html>
